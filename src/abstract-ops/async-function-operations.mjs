@@ -13,6 +13,7 @@ import { resume } from '../helpers.mjs';
 export function AsyncFunctionStart(promiseCapability, asyncFunctionBody, isExpression) {
   const runningContext = surroundingAgent.runningExecutionContext;
   const asyncContext = runningContext.copy();
+  asyncContext.promiseCapability = promiseCapability;
   asyncContext.codeEvaluationState = (function* resumer() {
     const evaluator = isExpression ? Evaluate : Evaluate_FunctionBody;
     const result = EnsureCompletion(yield* evaluator(asyncFunctionBody));
