@@ -1532,6 +1532,15 @@ export class REPLModuleRecord extends SourceTextModuleRecord {
   }
 }
 
+export class ExternalValue extends ObjectValue {
+  constructor(external) {
+    super();
+    this.external = external;
+    this.Extensible = Value.true;
+    this.Prototype = surroundingAgent.intrinsic('%ObjectPrototype%');
+  }
+}
+
 export function Type(val) {
   if (val instanceof UndefinedValue) {
     return 'Undefined';
